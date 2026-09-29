@@ -1,6 +1,3 @@
-# pet-shop
-Aplicativo de Pet Shop em React-Native
-
 # Tirano Shop
 
 > Um aplicativo de Pet Shop para Tiranossauros-Rex.
