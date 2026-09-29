@@ -17,7 +17,7 @@ Este projeto foi desenvolvido com as seguintes tecnologias:
 - Logo Secundária
 <img width="1990" height="1188" alt="logoParaApp" src="https://github.com/user-attachments/assets/0824f0da-583a-4266-8ff7-1d6f288dc18e" />
 
-##🏳️ Missão, Visão e Valores
+## 🏳️ Missão, Visão e Valores
 
 > Missão
 - Proporcionar o bem-estar de todos os Tiranossauros-Rex, oferecendo toda a plataforma necessária para seu cuidado.
