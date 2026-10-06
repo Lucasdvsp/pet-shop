@@ -8,7 +8,9 @@ Este projeto foi desenvolvido com as seguintes tecnologias:
 - Firebase Auth
 
 ## 📌 Funcionalidades
-- Listar dps
+- Notificações
+- Navegação entre telas
+- Autenticação de Usuários
 
 ## 🖼️ Logotipo
 - Logo Principal
