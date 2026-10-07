@@ -59,16 +59,16 @@ export default function FormAgendamento({servico, onFechar, onSalvar}){
 
     function confirmar(){
         if (!pet.trim() || !data || !horario) {
-            Alert.alert('Atenção', 'Preencha todos os campos.')
+            alert( 'Preencha todos os campos.')
             return
         }
         const quando = montarDataHora(data, horario)
         if (!quando) {
-            Alert.alert('Atenção', 'Informe uma data (DD/MM/AAAA) e um horário (HH:MM) válidos.')
+            alert( 'Informe uma data (DD/MM/AAAA) e um horário (HH:MM) válidos.')
             return
         }
         if (quando <= new Date()) {
-            Alert.alert('Atenção', 'Escolha uma data e um horário que ainda não passaram.')
+            alert('Escolha uma data e um horário que ainda não passaram.')
             return
         }
 

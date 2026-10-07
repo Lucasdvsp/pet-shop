@@ -4,6 +4,7 @@ import FontAwesome from '@expo/vector-icons/FontAwesome'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import {auth} from '../src/firebase'
 import {observarPerfil} from '../src/services/authService'
+import {useAgendamentos} from '../src/context/AgendamentosContext'
 import {SERVICOS, PRODUTOS} from '../src/services/servicos.js'
 import CardAgendamento from '../components/agendamento'
 import FormAgendamento from '../components/formAgendamento'
@@ -12,7 +13,7 @@ export default function Home({navigation}){
     const logo = require('../assets/logotipo para pet shop azul e rosa.png');
     const insets = useSafeAreaInsets()
     const [nome, setNome] = useState(auth.currentUser?.displayName)
-    const [agendamentos, setAgendamentos] = useState([])
+    const {agendamentos, adicionar, cancelar, naoLidas} = useAgendamentos()
     const [servicoAberto, setServicoAberto] = useState(null) // qual formulário está aberto
 
     // Logo após o cadastro o nome ainda está sendo salvo; isso atualiza a saudação quando chega.
@@ -20,11 +21,13 @@ export default function Home({navigation}){
 
     const primeiroNome = nome ? nome.trim().split(' ')[0] : null
 
-    function salvarAgendamento(novo){
-        setAgendamentos((lista)=>
-            [...lista, {...novo, id: Date.now().toString()}].sort((a, b)=> a.quando - b.quando)
-        )
-        setServicoAberto(null)
+    async function salvarAgendamento(novo){
+        setServicoAberto(null) // fecha o formulário primeiro, aconteça o que acontecer
+        try {
+            await adicionar(novo)
+        } catch (erro) {
+            Alert.alert('Erro', 'Não foi possível salvar o agendamento.')
+        }
     }
 
     function cancelarAgendamento(agendamento){
@@ -37,7 +40,7 @@ export default function Home({navigation}){
                 {
                     text: 'Sim, cancelar',
                     style: 'destructive',
-                    onPress: ()=> setAgendamentos((lista)=> lista.filter((a)=> a.id !== agendamento.id))
+                    onPress: ()=> cancelar(agendamento)
                 }
             ]
         )
@@ -59,6 +62,7 @@ export default function Home({navigation}){
                     <View style={styles.atalhos}>
                         <TouchableOpacity style={styles.btnAtalho} onPress={()=> navigation.navigate('Notificacoes')}>
                             <FontAwesome name='bell' size={20} color='#56A765'/>
+                            {naoLidas > 0 && <View style={styles.bolinha}/>}
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.btnAtalho} onPress={()=> navigation.navigate('Perfil')}>
                             <FontAwesome name='user' size={20} color='#56A765'/>
@@ -144,6 +148,15 @@ export default function Home({navigation}){
     logo:{
         width: 150,
         height: 60
+    },
+    bolinha:{
+        position: 'absolute',
+        top: 8,
+        right: 10,
+        width: 10,
+        height: 10,
+        borderRadius: 5,
+        backgroundColor: '#e5484d'
     },
     atalhos:{
         flexDirection: 'row'

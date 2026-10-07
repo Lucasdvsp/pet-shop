@@ -1,12 +1,14 @@
 import { useEffect } from 'react';
 import Route from './route'
-import * as NavigationBar from 'expo-navigation-bar'
+import {AgendamentosProvider} from './src/context/AgendamentosContext'
 
 export default function App(){
   useEffect(()=>{
     NavigationBar.setVisibilityAsync('hidden')
   }, [])
   return (
-    <Route/>
+    <AgendamentosProvider>
+      <Route/>
+    </AgendamentosProvider>
   );
 }

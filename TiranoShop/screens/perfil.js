@@ -2,12 +2,15 @@ import {Text, View, StyleSheet, TouchableOpacity, Alert} from 'react-native'
 import {auth} from '../src/firebase'
 import {sair} from '../src/services/authService'
 import BotaoVoltar from '../components/botaoVoltar'
+import {useAgendamentos} from '../src/context/AgendamentosContext'
 
 export default function Perfil(){
+    const {limpar} = useAgendamentos()
     const usuario = auth.currentUser
 
     async function handleLogout(){
         try {
+            limpar()
             await sair()
             // Não precisa navegar: o route.js percebe o logout e volta para o Cadastro.
         } catch (erro) {
