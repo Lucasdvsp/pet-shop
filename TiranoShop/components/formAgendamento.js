@@ -155,7 +155,7 @@ export default function FormAgendamento({servico, onFechar, onSalvar}){
         height: '100%'
     },
     form:{
-        width: '80%',
+        width: '50%',
         padding: 12,
         backgroundColor: '#FFFFFF',
         borderRadius: 8,
