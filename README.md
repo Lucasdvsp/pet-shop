@@ -31,5 +31,10 @@ Este projeto foi desenvolvido com as seguintes tecnologias:
 - Amor pelos Tiranossauros-Rex;
 - Ética e Transparência
 
+> Participantes
+- LEONARDO CAVALCANTE DE SOUZA 
 
+- LUCAS PAULINO RAMOS 
+
+- NATHAN CASTILLO MORAIS
 
